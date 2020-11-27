@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="@color/bg"
+                android:fitsSystemWindows="true"
+                android:layout_height="match_parent">
+    <include
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar"
+        layout="@layout/titlebar" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/title_bar"
+        android:layout_marginTop="19dp"
+        android:background="@color/umeng_divide"
+        />
+    <com.umeng.soexample.views.Item
+        android:id="@+id/social_share"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:umtitle="分享示例"
+        android:layout_below="@id/title_bar"
+        app:umicon="@drawable/um_sharedemo"
+        android:layout_height="@dimen/item_height"/>
+    <com.umeng.soexample.views.Item
+        android:id="@+id/social_board"
+        android:layout_width="match_parent"
+        android:layout_below="@id/social_share"
+        app:umtitle="分享面板"
+        app:umicon="@drawable/um_board"
+        android:layout_height="@dimen/item_height"/>
+    <com.umeng.soexample.views.Item
+        android:id="@+id/social_auth"
+        android:layout_width="match_parent"
+        android:layout_below="@id/social_board"
+        app:umtitle="第三方登录"
+        app:umicon="@drawable/um_auth"
+        android:layout_height="@dimen/item_height"/>
+    <com.umeng.soexample.views.Item
+        android:id="@+id/social_info"
+        android:layout_width="match_parent"
+        android:layout_below="@id/social_auth"
+        app:umtitle="获取用户资料"
+        app:umicon="@drawable/um_info"
+        android:layout_height="@dimen/item_height"/>
+
+</RelativeLayout>
