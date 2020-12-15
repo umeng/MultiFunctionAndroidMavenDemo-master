@@ -225,7 +225,6 @@ public class ShareDetailActivity extends BaseActivity{
                     fop.write(contentInBytes);
                     fop.flush();
                     fop.close();
-
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
