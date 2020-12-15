@@ -1,7 +1,10 @@
 ### 【友盟+】统计、推送、分享三合一组件化SDK集成Demo
 
+
 ---
 ## 集成升级必读(Android)
+
+#### apm SDK集成示例工程请参考 APM Demo：http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/176778/UMDP_zh/1608017839531/CrashDemo.zip
 
 #### 1. 统计SDK 9.3.0版本不能和低版本推送、分享SDK混用。混用可能导致不可预知后果(例如：崩溃，无数据等)。
 
@@ -22,3 +25,4 @@
 #### 5. 如集成移动统计后无数据，请查看https://developer.umeng.com/docs/119267/cate/121449 
 
 #### 6. 详细升级文档，请查看：https://developer.umeng.com/docs/119267/detail/118642
+
