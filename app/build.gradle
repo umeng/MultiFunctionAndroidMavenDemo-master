@@ -51,9 +51,9 @@ dependencies {
     api project(':UMLibrary')
 
     // 友盟统计SDK
-    implementation  'com.umeng.umsdk:common:9.3.0' // (必选)版本号
-    implementation  'com.umeng.umsdk:asms:1.1.3' // asms包依赖(必选)
-    implementation 'com.umeng.umsdk:crash:0.0.4' // native crash包依赖(必选)
+    implementation  'com.umeng.umsdk:common:9.3.3' // (必选)版本号
+    implementation  'com.umeng.umsdk:asms:1.1.4' // asms包依赖(必选)
+    implementation 'com.umeng.umsdk:apm:1.1.0' // apm包依赖(可选)
 
 //    //友盟push相关依赖(必须)
     implementation 'com.umeng.umsdk:push:6.2.0'
