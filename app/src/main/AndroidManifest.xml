@@ -125,13 +125,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <activity
-            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
-
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:exported="false">
-        </activity>
-
 
 
         <!-- vk -->
@@ -155,7 +148,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
        />
         <provider
-            android:authorities="com.tencent.sample2.fileprovider"
+            android:authorities="com.umeng.soexample.fileprovider"
             android:name="android.support.v4.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true"
@@ -163,7 +156,7 @@
             >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/filepaths"/>
         </provider>
         
         <uses-library

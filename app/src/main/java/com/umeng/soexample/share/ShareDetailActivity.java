@@ -47,6 +47,7 @@ public class ShareDetailActivity extends BaseActivity{
     public ArrayList<String> styles = new ArrayList<String>();
     private SHARE_MEDIA share_media;
     private LinearLayout container;
+    private UMImage sinaImageLocal_1, sinaImageLocal_2;
 
     private ProgressDialog dialog;
 
@@ -282,13 +283,31 @@ public class ShareDetailActivity extends BaseActivity{
             .setCallback(shareListener).share();
     }
     public void shareMulImage(){
-        UMImage imagelocal1 = new UMImage(this, R.drawable.logo);
-        imagelocal1.setThumb(new UMImage(this, R.drawable.thumb));
-        UMImage imagelocal2 = new UMImage(this, R.drawable.datu);
-        imagelocal2.setThumb(new UMImage(this, R.drawable.datu));
-        new ShareAction(ShareDetailActivity.this).withText("多图分享").withMedias(imagelocal1,imagelocal2 )
-            .setPlatform(share_media)
-            .setCallback(shareListener).share();
+        if(share_media == SHARE_MEDIA.SINA){
+            // 新浪微博多图分享仅支持共享路径 /data/data/应用包名/files/ 下图片文件
+            //将图片copy到/data/data/应用包名/files/下
+            prepareSinaImages();
+            File sinaImage_1 = new File(getExternalFilesDir(null) + "/datu.jpg");
+            File sinaImage_2 = new File(getExternalFilesDir(null) + "/logo.png");
+            sinaImageLocal_1 = new UMImage(this, sinaImage_1);
+            sinaImageLocal_2 = new UMImage(this, sinaImage_2);
+            // 通过FileProvider方式跨App分享图片时，
+
+            new ShareAction(ShareDetailActivity.this).withText("多图分享").withMedias(sinaImageLocal_1, sinaImageLocal_2)
+                    .setPlatform(share_media)
+                    .setCallback(shareListener).share();
+
+        }else {
+            UMImage imagelocal1 = new UMImage(this, R.drawable.logo);
+            imagelocal1.setThumb(new UMImage(this, R.drawable.thumb));
+            UMImage imagelocal2 = new UMImage(this, R.drawable.datu);
+            imagelocal2.setThumb(new UMImage(this, R.drawable.datu));
+
+            new ShareAction(ShareDetailActivity.this).withText("多图分享").withMedias(imagelocal1,imagelocal2 )
+                    .setPlatform(share_media)
+                    .setCallback(shareListener).share();
+        }
+
     }
     public void shareFile(){
         File file = new File(this.getFilesDir()+"test.txt");
@@ -396,5 +415,35 @@ public class ShareDetailActivity extends BaseActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
+    }
+
+
+    private void copyFile(final String fileName) {
+        final File file = new File(getExternalFilesDir(null).getPath() + "/" + fileName);
+        if (!file.exists()) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        InputStream inputStream = getAssets().open(fileName);
+                        OutputStream outputStream = new FileOutputStream(file);
+                        byte[] buffer = new byte[1444];
+                        int readSize;
+                        while ((readSize = inputStream.read(buffer)) != 0) {
+                            outputStream.write(buffer, 0, readSize);
+                        }
+                        inputStream.close();
+                        outputStream.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+        }
+    }
+    private void prepareSinaImages() {
+        copyFile("logo.png");
+        copyFile("datu.jpg");
     }
 }
