@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.umeng.message.common.UmengMessageDeviceConfig;
@@ -196,6 +197,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
         mPushAgent.addAlias(alias, aliasType, new UTrack.ICallBack() {
             @Override
             public void onMessage(boolean isSuccess, String message) {
+                Log.d(TAG, "success:" + isSuccess + " message:" + message);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -226,10 +228,10 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                                 builder.append("\n");
                             }
                             PushDialogFragment.newInstance(1, 1, getString(R.string.push_get_tags),
-                                builder.toString()).show(getFragmentManager(), "deleshowWeightedTagteTag");
+                                    builder.toString()).show(getFragmentManager(), "deleshowWeightedTagteTag");
                         } else {
                             PushDialogFragment.newInstance(1, 0, getString(R.string.push_get_tags),
-                                "").show(getFragmentManager(), "showWeightedTag");
+                                    "").show(getFragmentManager(), "showWeightedTag");
                         }
                     }
                 });
@@ -247,12 +249,12 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                         if (isSuccess) {
                             sharedPref.edit().putInt(WEIGHTED_TAG_REMAIN, result.remain).apply();
                             PushDialogFragment.newInstance(0, 1, getString(R.string.push_delete_success),
-                                inputWeightedTag.getText().toString()).show(getFragmentManager(), "deleteWeightedTag");
+                                    inputWeightedTag.getText().toString()).show(getFragmentManager(), "deleteWeightedTag");
                             inputWeightedTag.setText("");
                             inputWeightedTagValue.setText("");
                         } else {
                             PushDialogFragment.newInstance(0, 0, getString(R.string.push_delete_fail),
-                                inputWeightedTag.getText().toString()).show(getFragmentManager(), "deleteWeightedTag");
+                                    inputWeightedTag.getText().toString()).show(getFragmentManager(), "deleteWeightedTag");
                         }
                     }
                 });
@@ -280,15 +282,15 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                         if (isSuccess) {
                             sharedPref.edit().putInt(WEIGHTED_TAG_REMAIN, result.remain).apply();
                             PushDialogFragment.newInstance(0, 1, getString(R.string.push_add_success),
-                                inputWeightedTag.getText().toString() + "\n" + getString(R.string.push_tag_value) +
-                                    inputWeightedTagValue.getText().toString()).show(getFragmentManager(),
-                                "addWeightedTag");
+                                    inputWeightedTag.getText().toString() + "\n" + getString(R.string.push_tag_value) +
+                                            inputWeightedTagValue.getText().toString()).show(getFragmentManager(),
+                                    "addWeightedTag");
                             inputWeightedTag.setText("");
                             inputWeightedTagValue.setText("");
                         } else {
                             PushDialogFragment.newInstance(0, 0, getString(R.string.push_add_fail),
-                                inputWeightedTag.getText().toString() + "\n" + getString(R.string.push_tag_value) + inputWeightedTagValue.getText()
-                                    .toString()).show(getFragmentManager(), "addWeightedTag");
+                                    inputWeightedTag.getText().toString() + "\n" + getString(R.string.push_tag_value) + inputWeightedTagValue.getText()
+                                            .toString()).show(getFragmentManager(), "addWeightedTag");
                         }
                     }
                 });
@@ -315,10 +317,10 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                                 }
                             }
                             PushDialogFragment.newInstance(1, 1, getString(R.string.push_get_tags),
-                                info.toString()).show(getFragmentManager(), "deleteTag");
+                                    info.toString()).show(getFragmentManager(), "deleteTag");
                         } else {
                             PushDialogFragment.newInstance(1, 0, getString(R.string.push_get_tags),
-                                "").show(getFragmentManager(), "deleteTag");
+                                    "").show(getFragmentManager(), "deleteTag");
                         }
                     }
                 });
@@ -343,10 +345,10 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                             sharedPref.edit().putInt(TAG_REMAIN, result.remain).apply();
                             tagRemain.setText(String.valueOf(result.remain));
                             PushDialogFragment.newInstance(0, 1,
-                                getString(R.string.push_delete_success), tag).show(getFragmentManager(), "deleteTag");
+                                    getString(R.string.push_delete_success), tag).show(getFragmentManager(), "deleteTag");
                         } else {
                             PushDialogFragment.newInstance(0, 0,
-                                getString(R.string.push_delete_fail), tag).show(getFragmentManager(), "deleteTag");
+                                    getString(R.string.push_delete_fail), tag).show(getFragmentManager(), "deleteTag");
                         }
                     }
                 });
@@ -371,10 +373,10 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
                             sharedPref.edit().putInt(TAG_REMAIN, result.remain).apply();
                             tagRemain.setText(String.valueOf(result.remain));
                             PushDialogFragment.newInstance(0, 1, getString(R.string.push_add_success), tag).show(
-                                getFragmentManager(), "addTag");
+                                    getFragmentManager(), "addTag");
                         } else {
                             PushDialogFragment.newInstance(0, 0, getString(R.string.push_add_fail), tag).show(
-                                getFragmentManager(), "addTag");
+                                    getFragmentManager(), "addTag");
                         }
                     }
                 });
@@ -412,8 +414,8 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
         String cpu = UmengMessageDeviceConfig.getCPU();
         String osVersion = android.os.Build.VERSION.RELEASE;
         String info = getString(R.string.push_os_version) + osVersion + "\n" + getString(R.string.push_cpu_info) + cpu
-            + "\n" + getString(R.string.push_system_notification_switch) + status;
+                + "\n" + getString(R.string.push_system_notification_switch) + status;
         PushDialogFragment.newInstance(1, 0, getString(
-            R.string.push_device_check), info).show(getFragmentManager(), "deviceCheck");
+                R.string.push_device_check), info).show(getFragmentManager(), "deviceCheck");
     }
 }

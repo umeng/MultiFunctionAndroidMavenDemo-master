@@ -14,13 +14,13 @@ public class DebugNotification {
     /**
      * 发送透传消息
      *
-     * @param mContext
+     * @param context
      */
-    public static void transmission(final Context mContext, final Handler handler) {
+    public static void transmission(final Context context, final Handler handler) {
         try {
             final AndroidUnicast unicast = new AndroidUnicast("59892f08310c9307b60023d0",
                 "xkqdlqwgkglgfdydyawb16etxilvmy3g");
-            unicast.setDeviceToken(MessageSharedPrefs.getInstance(mContext).getDeviceToken());
+            unicast.setDeviceToken(MessageSharedPrefs.getInstance(context).getDeviceToken());
             unicast.setTicker("Android unicast ticker");
             unicast.setTitle("Title");
             unicast.setText("Demo透传测试");
@@ -32,7 +32,7 @@ public class DebugNotification {
                 @Override
                 public void run() {
                     try {
-                        send(unicast, mContext, handler);
+                        send(unicast, context, handler);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

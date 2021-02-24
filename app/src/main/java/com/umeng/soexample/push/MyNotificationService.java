@@ -16,7 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyNotificationService extends Service {
-    private static final String TAG = UmengNotificationService.class.getName();
     public static UMessage oldMessage = null;
 
     @Override
@@ -48,17 +47,16 @@ public class MyNotificationService extends Service {
         oldMessage = msg;
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancelAll();
-        Notification.Builder mBuilder = new Notification.Builder(this);
-        mBuilder.setContentTitle(msg.title)
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle(msg.title)
                 .setContentText(msg.text)
                 .setTicker(msg.ticker)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.umeng_push_notification_default_small_icon)
                 .setAutoCancel(true);
-        Notification notification = mBuilder.getNotification();
+        Notification notification = builder.getNotification();
         PendingIntent clickPendingIntent = getClickPendingIntent(this, msg);
-        PendingIntent dismissPendingIntent = getDismissPendingIntent(this, msg);
-        notification.deleteIntent = dismissPendingIntent;
+        notification.deleteIntent = getDismissPendingIntent(this, msg);
         notification.contentIntent = clickPendingIntent;
         manager.notify(id, notification);
     }
@@ -70,11 +68,10 @@ public class MyNotificationService extends Service {
                 msg.getRaw().toString());
         clickIntent.putExtra(NotificationBroadcast.EXTRA_KEY_ACTION,
                 NotificationBroadcast.ACTION_CLICK);
-        PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context,
+
+        return PendingIntent.getBroadcast(context,
                 (int) (System.currentTimeMillis()),
                 clickIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        return clickPendingIntent;
     }
 
     public PendingIntent getDismissPendingIntent(Context context, UMessage msg) {
@@ -85,10 +82,9 @@ public class MyNotificationService extends Service {
         deleteIntent.putExtra(
                 NotificationBroadcast.EXTRA_KEY_ACTION,
                 NotificationBroadcast.ACTION_DISMISS);
-        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(context,
+        return PendingIntent.getBroadcast(context,
                 (int) (System.currentTimeMillis() + 1),
                 deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-        return deletePendingIntent;
     }
 
     @Override

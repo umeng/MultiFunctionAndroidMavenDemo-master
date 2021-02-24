@@ -23,7 +23,7 @@ public class NotificationBroadcast extends BroadcastReceiver {
         int action = intent.getIntExtra(EXTRA_KEY_ACTION,
                 EXTRA_ACTION_NOT_EXIST);
         try {
-            UMessage msg = (UMessage) new UMessage(new JSONObject(message));
+            UMessage msg = new UMessage(new JSONObject(message));
 
             switch (action) {
                 case ACTION_DISMISS:
@@ -38,7 +38,6 @@ public class NotificationBroadcast extends BroadcastReceiver {
                     UTrack.getInstance(context).trackMsgClick(msg);
                     break;
             }
-            //
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (Exception e) {

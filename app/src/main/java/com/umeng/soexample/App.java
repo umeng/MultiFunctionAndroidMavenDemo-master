@@ -1,7 +1,5 @@
 package com.umeng.soexample;
 
-import java.lang.reflect.Field;
-
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
@@ -32,7 +30,6 @@ public class App extends Application {
 
     private static final String TAG = App.class.getName();
     public static final String UPDATE_STATUS_ACTION = "com.umeng.message.example.action.UPDATE_STATUS";
-    private Handler handler;
 
     @Override
     public void onCreate() {
@@ -54,7 +51,7 @@ public class App extends Application {
 	//集成umeng-crash-vx.x.x.aar，则需要关闭原有统计SDK异常捕获功能
 	    MobclickAgent.setCatchUncaughtExceptions(false);
         //PushSDK初始化(如使用推送SDK，必须调用此方法)
-        initUpush();
+        initPush();
 
         //统计SDK是否支持采集在子进程中打点的自定义事件，默认不支持
         UMConfigure.setProcessEvent(true);//支持多进程打点
@@ -93,12 +90,12 @@ public class App extends Application {
         MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
     }
 
-    private void initUpush() {
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        handler = new Handler(getMainLooper());
+    private void initPush() {
+        PushAgent pushAgent = PushAgent.getInstance(this);
+        Handler handler = new Handler(getMainLooper());
 
         //sdk开启通知声音
-        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        pushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
         // sdk关闭通知声音
         // mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_DISABLE);
         // 通知声音由服务端控制
@@ -123,23 +120,18 @@ public class App extends Application {
              */
             @Override
             public void dealWithCustomMessage(final Context context, final UMessage msg) {
-
-                handler.post(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        // 对自定义消息的处理方式，点击或者忽略
-                        boolean isClickOrDismissed = true;
-                        if (isClickOrDismissed) {
-                            //自定义消息的点击统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
-                        } else {
-                            //自定义消息的忽略统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
-                        }
-                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+                handler.post(() -> {
+                    //自定义消息处理后，如果需要统计处理结果，需主动调用
+                    boolean isClickOrDismissed = true;
+                    if (isClickOrDismissed) {
+                        //自定义消息的点击统计
+                        UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
+                    } else {
+                        //自定义消息的忽略统计
+                        UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
                     }
+
+                    Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
                 });
             }
 
@@ -170,7 +162,7 @@ public class App extends Application {
                 }
             }
         };
-        mPushAgent.setMessageHandler(messageHandler);
+        pushAgent.setMessageHandler(messageHandler);
 
         /**
          * 自定义行为的回调处理，参考文档：高级功能-通知的展示及提醒-自定义通知打开动作
@@ -200,10 +192,10 @@ public class App extends Application {
             }
         };
         //使用自定义的NotificationHandler
-        mPushAgent.setNotificationClickHandler(notificationClickHandler);
+        pushAgent.setNotificationClickHandler(notificationClickHandler);
 
         //注册推送服务 每次调用register都会回调该接口
-        mPushAgent.register(new IUmengRegisterCallback() {
+        pushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String deviceToken) {
                 Log.i(TAG, "device token: " + deviceToken);
@@ -228,7 +220,7 @@ public class App extends Application {
         //MeizuRegister.register(this, MEIZU_APPID, MEIZU_APPKEY);
     }
 
-    {
+    static {
         // 微信设置
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
         PlatformConfig.setWXFileProvider("com.umeng.soexample.fileprovider");

@@ -9,7 +9,6 @@ import com.umeng.soexample.R;
 import org.android.agoo.common.AgooConstants;
 
 public class MipushTestActivity extends UmengNotifyClickActivity {
-    private static String TAG = MipushTestActivity.class.getName();
     private TextView mipushTextView;
 
     @Override
