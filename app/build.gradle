@@ -48,12 +48,16 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -66,7 +70,7 @@ dependencies {
     implementation 'com.umeng.umsdk:apm:1.1.1' // apm包依赖(可选)
 
     //友盟Push相关依赖（必须）
-    api 'com.umeng.umsdk:push:6.3.2'
+    api 'com.umeng.umsdk:push:6.3.3'
     implementation 'com.umeng.umsdk:alicloud-httpdns:1.3.2.3'
     implementation 'com.umeng.umsdk:alicloud-utils:2.0.0'
     implementation 'com.umeng.umsdk:alicloud_beacon:1.0.5'
