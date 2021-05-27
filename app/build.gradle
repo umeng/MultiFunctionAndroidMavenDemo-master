@@ -93,8 +93,9 @@ dependencies {
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
 
-    //微博官方SDK
-    implementation 'com.sina.weibo.sdk:core:10.10.0:openDefaultRelease@aar'
+    //新浪微博官方SDK
+    implementation(name:'openDefault-10.10.0', ext:'aar')
+
     //微信官方依赖库
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5'
     //QQ官方依赖库
