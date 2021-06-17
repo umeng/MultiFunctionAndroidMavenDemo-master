@@ -82,23 +82,27 @@ dependencies {
     implementation 'com.umeng.umsdk:utdid:1.5.2.1'
 
     //分享，登录
-    implementation 'com.umeng.umsdk:share-core:7.1.4'
-    implementation 'com.umeng.umsdk:share-board:7.1.4'
-    implementation 'com.umeng.umsdk:share-qq:7.1.4'
-    implementation 'com.umeng.umsdk:share-wx:7.1.4'
-    implementation 'com.umeng.umsdk:share-sina:7.1.4'
-    implementation 'com.umeng.umsdk:share-alipay:7.1.4'
-    implementation 'com.umeng.umsdk:share-dingding:7.1.4'
+    implementation 'com.umeng.umsdk:share-core:7.1.5'
+    implementation 'com.umeng.umsdk:share-board:7.1.5'
+    implementation 'com.umeng.umsdk:share-qq:7.1.5'
+    implementation 'com.umeng.umsdk:share-wx:7.1.5'
+    implementation 'com.umeng.umsdk:share-sina:7.1.5'
+    implementation 'com.umeng.umsdk:share-alipay:7.1.5'
+    implementation 'com.umeng.umsdk:share-dingding:7.1.5'
 
+
+    //twitter官方sdk
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
-
     //新浪微博官方SDK
     implementation(name:'openDefault-10.10.0', ext:'aar')
 
-    //微信官方依赖库
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5'
+
     //QQ官方依赖库
-    implementation 'com.tencent.tauth:qqopensdk:3.51.2'
+    implementation 'com.tencent.tauth:qqopensdk:3.53.0'
+    //微信官方依赖库
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.0'
+    //钉钉官方sdk
+    implementation  "com.alibaba.android:ddsharesdk:1.2.0@jar"
 
 }
