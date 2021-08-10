@@ -65,7 +65,7 @@ dependencies {
     api project(':UMLibrary')
 
     // 友盟统计SDK
-    implementation 'com.umeng.umsdk:common:9.4.0' // (必选)版本号
+    implementation 'com.umeng.umsdk:common:9.4.2' // (必选)版本号
     implementation 'com.umeng.umsdk:asms:1.2.3' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
@@ -96,8 +96,6 @@ dependencies {
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
     //新浪微博官方SDK
     implementation(name:'openDefault-10.10.0', ext:'aar')
-
-
     //QQ官方依赖库
     implementation 'com.tencent.tauth:qqopensdk:3.53.0'
     //微信官方依赖库
