@@ -66,30 +66,21 @@ dependencies {
 
     // 友盟统计SDK
     implementation 'com.umeng.umsdk:common:9.4.2' // (必选)版本号
-    implementation 'com.umeng.umsdk:asms:1.2.3' // asms包依赖(必选)
+    implementation 'com.umeng.umsdk:asms:1.4.0' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
 
-    //友盟Push相关依赖（必须）
-    api 'com.umeng.umsdk:push:6.3.3'
-    implementation 'com.umeng.umsdk:alicloud-httpdns:1.3.2.3'
-    implementation 'com.umeng.umsdk:alicloud-utils:2.0.0'
-    implementation 'com.umeng.umsdk:alicloud_beacon:1.0.5'
-    api 'com.umeng.umsdk:agoo-accs:3.4.2.7'
-    implementation 'com.umeng.umsdk:agoo_aranger:1.0.6'
-    implementation 'com.umeng.umsdk:agoo_networksdk:3.5.8'
-    implementation 'com.umeng.umsdk:agoo_tnet4android:3.1.14.10'
-    implementation 'com.umeng.umsdk:utdid:1.5.2.1'
+    //友盟Push依赖（必须）
+    api 'com.umeng.umsdk:push:6.4.0'
 
     //分享，登录
-    implementation 'com.umeng.umsdk:share-core:7.1.5'
-    implementation 'com.umeng.umsdk:share-board:7.1.5'
-    implementation 'com.umeng.umsdk:share-qq:7.1.5'
-    implementation 'com.umeng.umsdk:share-wx:7.1.5'
-    implementation 'com.umeng.umsdk:share-sina:7.1.5'
-    implementation 'com.umeng.umsdk:share-alipay:7.1.5'
-    implementation 'com.umeng.umsdk:share-dingding:7.1.5'
-
+    implementation 'com.umeng.umsdk:share-core:7.1.6'
+    implementation 'com.umeng.umsdk:share-board:7.1.6'
+    implementation 'com.umeng.umsdk:share-qq:7.1.6'
+    implementation 'com.umeng.umsdk:share-wx:7.1.6'
+    implementation 'com.umeng.umsdk:share-sina:7.1.6'
+    implementation 'com.umeng.umsdk:share-alipay:7.1.6'
+    implementation 'com.umeng.umsdk:share-dingding:7.1.6'
 
     //twitter官方sdk
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
@@ -99,8 +90,7 @@ dependencies {
     //QQ官方依赖库
     implementation 'com.tencent.tauth:qqopensdk:3.53.0'
     //微信官方依赖库
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.0'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'
     //钉钉官方sdk
     implementation  "com.alibaba.android:ddsharesdk:1.2.0@jar"
-
 }
