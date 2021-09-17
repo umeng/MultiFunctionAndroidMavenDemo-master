@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.PushAgent;
 import com.umeng.message.inapp.InAppMessageManager;
 import com.umeng.message.inapp.UmengSplashMessageActivity;
@@ -68,7 +69,7 @@ public class SplashTestActivity extends UmengSplashMessageActivity {
             public void onClick(View v) {
                 /*** uminit为1时代表已经同意隐私协议，sp记录当前状态*/
                 sharedPreferencesHelper.put("uminit","1");
-
+                UMConfigure.submitPolicyGrantResult(getApplicationContext(), true);
                 /*** 友盟sdk正式初始化*/
                 UmInitConfig umInitConfig=new UmInitConfig();
                 umInitConfig.UMinit(getApplicationContext());
@@ -92,6 +93,8 @@ public class SplashTestActivity extends UmengSplashMessageActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
+                UMConfigure.submitPolicyGrantResult(getApplicationContext(), false);
                 //不同意隐私协议，退出app
                 android.os.Process.killProcess(android.os.Process.myPid());
 
