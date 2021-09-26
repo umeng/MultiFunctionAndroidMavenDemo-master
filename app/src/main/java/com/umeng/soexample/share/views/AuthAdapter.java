@@ -74,7 +74,7 @@ public class AuthAdapter extends BaseAdapter {
                 if (isauth) {
                     UMShareAPI.get(mContext).deleteOauth(mActivity, list.get(position).mPlatform, authListener);
                 } else {
-                    UMShareAPI.get(mContext).doOauthVerify(mActivity, list.get(position).mPlatform, authListener);
+                    UMShareAPI.get(mContext).getPlatformInfo(mActivity, list.get(position).mPlatform, authListener);
                 }
             }
         });

@@ -1,4 +1,5 @@
 ### 【友盟+】统计、推送、分享三合一组件化SDK集成Demo
+     统计，分享sdk在线maven依赖展示demo
 
 重要更新：增加用户授权隐私协议友盟sdk初始化逻辑，具体请查看SplashTestActivity
 
