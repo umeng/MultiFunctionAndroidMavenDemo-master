@@ -66,12 +66,12 @@ dependencies {
 
     // 友盟统计SDK
     implementation 'com.umeng.umsdk:common:9.4.4' // (必选)版本号
-    implementation 'com.umeng.umsdk:asms:1.4.0' // asms包依赖(必选)
+    implementation 'com.umeng.umsdk:asms:1.4.1' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
 
     //友盟Push依赖（必须）
-    api 'com.umeng.umsdk:push:6.4.0'
+    api 'com.umeng.umsdk:push:6.4.3'
 
     //分享，登录
     implementation 'com.umeng.umsdk:share-core:7.1.6'
