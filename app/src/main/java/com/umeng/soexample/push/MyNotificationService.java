@@ -33,14 +33,14 @@ public class MyNotificationService extends Service {
         if (intent == null) {
             return super.onStartCommand(intent, flags, startId);
         }
-        String message = intent.getStringExtra("UmengMsg");
         try {
+            String message = intent.getStringExtra("UmengMsg");
             UMessage msg = new UMessage(new JSONObject(message));
             if (oldMessage != null) {
                 UTrack.getInstance(getApplicationContext()).trackMsgDismissed(oldMessage);
             }
             showNotification(msg);
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return super.onStartCommand(intent, flags, startId);
@@ -81,6 +81,8 @@ public class MyNotificationService extends Service {
         notification.deleteIntent = dismissPendingIntent;
         notification.contentIntent = clickPendingIntent;
         manager.notify(id, notification);
+        //通知消息显示统计
+        UTrack.getInstance(this).trackMsgShow(msg, notification);
     }
 
     public PendingIntent getClickPendingIntent(Context context, UMessage msg) {

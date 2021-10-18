@@ -36,8 +36,6 @@ public class NotificationBroadcast extends BroadcastReceiver {
                     UTrack.getInstance(context).trackMsgClick(msg);
                     break;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
