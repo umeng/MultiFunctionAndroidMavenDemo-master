@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.tencent.tauth.Tencent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.PushAgent;
 import com.umeng.message.inapp.InAppMessageManager;
@@ -73,7 +74,8 @@ public class SplashTestActivity extends UmengSplashMessageActivity {
                 /*** 友盟sdk正式初始化*/
                 UmInitConfig umInitConfig=new UmInitConfig();
                 umInitConfig.UMinit(getApplicationContext());
-
+                //QQ官方sdk授权
+                Tencent.setIsPermissionGranted(true);
                 //关闭弹窗
                 dialog.dismiss();
 
