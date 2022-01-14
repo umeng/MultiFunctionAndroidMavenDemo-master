@@ -65,7 +65,7 @@ dependencies {
     api project(':UMLibrary')
 
     // 友盟统计SDK
-    implementation 'com.umeng.umsdk:common:9.4.5' // (必选)版本号
+    implementation 'com.umeng.umsdk:common:9.4.6' // (必选)版本号
     implementation 'com.umeng.umsdk:asms:1.4.1' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
