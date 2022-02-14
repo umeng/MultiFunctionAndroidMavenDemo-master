@@ -248,7 +248,7 @@ public class UmInitConfig {
         });
 
         //使用完全自定义处理
-        pushAgent.setPushIntentServiceClass(UmengNotificationService.class);
+//        pushAgent.setPushIntentServiceClass(UmengNotificationService.class);
 
         //小米通道
         //MiPushRegistar.register(this, XIAOMI_ID, XIAOMI_KEY);
