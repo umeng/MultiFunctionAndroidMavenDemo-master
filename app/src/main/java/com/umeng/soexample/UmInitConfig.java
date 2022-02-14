@@ -19,8 +19,10 @@ import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.common.UPushNotificationChannel;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.PlatformConfig;
+import com.umeng.soexample.push.UmengNotificationService;
 
 import static android.os.Looper.getMainLooper;
 
@@ -167,7 +169,7 @@ public class UmInitConfig {
                         if (Build.VERSION.SDK_INT >= 26) {
                             if (!UmengMessageHandler.isChannelSet) {
                                 UmengMessageHandler.isChannelSet = true;
-                                NotificationChannel chan = new NotificationChannel(UmengMessageHandler.PRIMARY_CHANNEL,
+                                NotificationChannel chan = new NotificationChannel(UPushNotificationChannel.PRIMARY_CHANNEL,
                                         PushAgent.getInstance(context).getNotificationChannelName(),
                                         NotificationManager.IMPORTANCE_DEFAULT);
                                 NotificationManager manager = (NotificationManager) context.getSystemService(
@@ -176,7 +178,7 @@ public class UmInitConfig {
                                     manager.createNotificationChannel(chan);
                                 }
                             }
-                            builder = new Notification.Builder(context, UmengMessageHandler.PRIMARY_CHANNEL);
+                            builder = new Notification.Builder(context, UPushNotificationChannel.PRIMARY_CHANNEL);
                         } else {
                             builder = new Notification.Builder(context);
                         }
@@ -246,7 +248,7 @@ public class UmInitConfig {
         });
 
         //使用完全自定义处理
-//        pushAgent.setPushIntentServiceClass(UmengNotificationService.class);
+        pushAgent.setPushIntentServiceClass(UmengNotificationService.class);
 
         //小米通道
         //MiPushRegistar.register(this, XIAOMI_ID, XIAOMI_KEY);

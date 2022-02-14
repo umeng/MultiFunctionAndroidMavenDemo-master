@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
+import com.umeng.message.api.UPushAliasCallback;
+import com.umeng.message.api.UPushTagCallback;
 import com.umeng.message.common.UmengMessageDeviceConfig;
 import com.umeng.message.common.inter.ITagManager;
 import com.umeng.message.common.inter.ITagManager.Result;
@@ -92,44 +94,31 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_add_tag:
-                addTag();
-                break;
-            case R.id.btn_delete_tag:
-                deleteTag();
-                break;
-            case R.id.btn_show_tag:
-                showTag();
-                break;
-            case R.id.btn_add_weighted_tag:
-                addWeightedTag();
-                break;
-            case R.id.btn_delete_weighted_tag:
-                deleteWeightedTag();
-                break;
-            case R.id.btn_show_weighted_tag:
-                showWeightedTag();
-                break;
-            case R.id.btn_add_alias:
-                addAlias();
-                break;
-            case R.id.btn_delete_alias:
-                deleteAlias();
-                break;
-            case R.id.btn_set_alias:
-                setAlias();
-                break;
-            case R.id.btn_show_card_message:
-//                showCardMessage();
-                break;
-            case R.id.btn_serialnet:
-                serialnet();
-                break;
-            case R.id.btn_device_check:
-                deviceCheck();
-                break;
-            default:
+        int id = view.getId();
+        if (id == R.id.btn_add_tag) {
+            addTag();
+        } else if (id == R.id.btn_delete_tag) {
+            deleteTag();
+        } else if (id == R.id.btn_show_tag) {
+            showTag();
+        } else if (id == R.id.btn_add_weighted_tag) {
+            addWeightedTag();
+        } else if (id == R.id.btn_delete_weighted_tag) {
+            deleteWeightedTag();
+        } else if (id == R.id.btn_show_weighted_tag) {
+            showWeightedTag();
+        } else if (id == R.id.btn_add_alias) {
+            addAlias();
+        } else if (id == R.id.btn_delete_alias) {
+            deleteAlias();
+        } else if (id == R.id.btn_set_alias) {
+            setAlias();
+        } else if (id == R.id.btn_show_card_message) {
+            showCardMessage();
+        } else if (id == R.id.btn_serialnet) {
+            serialnet();
+        } else if (id == R.id.btn_device_check) {
+            deviceCheck();
         }
     }
 
@@ -144,7 +133,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(this, "请输入alias type", Toast.LENGTH_SHORT).show();
             return;
         }
-        mPushAgent.setAlias(alias, aliasType, new UTrack.ICallBack() {
+        mPushAgent.setAlias(alias, aliasType, new UPushAliasCallback() {
             @Override
             public void onMessage(boolean isSuccess, String message) {
                 handler.post(new Runnable() {
@@ -169,7 +158,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(this, "请输入alias type", Toast.LENGTH_SHORT).show();
             return;
         }
-        mPushAgent.deleteAlias(alias, aliasType, new UTrack.ICallBack() {
+        mPushAgent.deleteAlias(alias, aliasType, new UPushAliasCallback() {
             @Override
             public void onMessage(boolean isSuccess, String message) {
                 handler.post(new Runnable() {
@@ -194,7 +183,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(this, "请先输入alias type", Toast.LENGTH_SHORT).show();
             return;
         }
-        mPushAgent.addAlias(alias, aliasType, new UTrack.ICallBack() {
+        mPushAgent.addAlias(alias, aliasType, new UPushAliasCallback() {
             @Override
             public void onMessage(boolean isSuccess, String message) {
                 Log.d(TAG, "success:" + isSuccess + " message:" + message);
@@ -210,7 +199,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void showWeightedTag() {
-        mPushAgent.getTagManager().getWeightedTags(new WeightedTagListCallBack() {
+        mPushAgent.getTagManager().getWeightedTags(new UPushTagCallback<Hashtable<String, Integer>>() {
             @Override
             public void onMessage(final boolean isSuccess, final Hashtable<String, Integer> result) {
                 handler.post(new Runnable() {
@@ -240,7 +229,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void deleteWeightedTag() {
-        mPushAgent.getTagManager().deleteWeightedTags(new TCallBack() {
+        mPushAgent.getTagManager().deleteWeightedTags(new UPushTagCallback<Result>() {
             @Override
             public void onMessage(final boolean isSuccess, final Result result) {
                 handler.post(new Runnable() {
@@ -273,7 +262,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
         }
         final Hashtable<String, Integer> table = new Hashtable<String, Integer>();
         table.put(inputWeightedTag.getText().toString(), Integer.valueOf(inputWeightedTagValue.getText().toString()));
-        mPushAgent.getTagManager().addWeightedTags(new TCallBack() {
+        mPushAgent.getTagManager().addWeightedTags(new UPushTagCallback<Result>() {
             @Override
             public void onMessage(final boolean isSuccess, final Result result) {
                 handler.post(new Runnable() {
@@ -299,7 +288,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void showTag() {
-        mPushAgent.getTagManager().getTags(new TagManager.TagListCallBack() {
+        mPushAgent.getTagManager().getTags(new UPushTagCallback<List<String>>() {
             @Override
             public void onMessage(final boolean isSuccess, final List<String> result) {
                 handler.post(new Runnable() {
@@ -334,7 +323,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(this, "请先输入tag", Toast.LENGTH_SHORT).show();
             return;
         }
-        mPushAgent.getTagManager().deleteTags(new TagManager.TCallBack() {
+        mPushAgent.getTagManager().deleteTags(new UPushTagCallback<Result>() {
             @Override
             public void onMessage(final boolean isSuccess, final ITagManager.Result result) {
                 handler.post(new Runnable() {
@@ -362,7 +351,7 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(this, "请先输入tag", Toast.LENGTH_SHORT).show();
             return;
         }
-        mPushAgent.getTagManager().addTags(new TagManager.TCallBack() {
+        mPushAgent.getTagManager().addTags(new UPushTagCallback<Result>() {
             @Override
             public void onMessage(final boolean isSuccess, final ITagManager.Result result) {
                 handler.post(new Runnable() {
@@ -384,14 +373,14 @@ public class UpushActivity extends BaseActivity implements View.OnClickListener 
         }, tag);
     }
 
-//    private void showCardMessage() {
-//        InAppMessageManager.getInstance(this).showCardMessage(this, "main", new IUmengInAppMsgCloseCallback() {
-//            @Override
-//            public void onColse() {
-//                Log.i(TAG, "card message close");
-//            }
-//        });
-//    }
+    private void showCardMessage() {
+        InAppMessageManager.getInstance(this).showCardMessage(this, "main", new IUmengInAppMsgCloseCallback() {
+            @Override
+            public void onClose() {
+                Log.i(TAG, "card message close");
+            }
+        });
+    }
 
     private void serialnet() {
         DebugNotification.transmission(UpushActivity.this, handler);
