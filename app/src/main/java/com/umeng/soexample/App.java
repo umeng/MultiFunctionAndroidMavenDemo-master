@@ -9,6 +9,7 @@ import com.tencent.tauth.Tencent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.PushAgent;
 import com.umeng.soexample.sp.SharedPreferencesHelper;
+import com.umeng.umcrash.UMCrash;
 
 /**
  * Created by wangfei on 2018/1/23.
@@ -26,6 +27,8 @@ public class App extends Application {
         //设置LOG开关，默认为false
         UMConfigure.setLogEnabled(true);
         QtConfigure.setCustomDomain("https://log-api.aplus.emas-poc.com", null);
+        UMCrash.setCustomDomainCrash("https://log-api.aplus.emas-poc.com");
+        //UMEfs.setCustomDomainEfs("https://log-api.aplus.emas-poc.com");
         //QT 统计打开调试日志
         QtConfigure.setLogEnabled(true);
 

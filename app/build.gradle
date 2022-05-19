@@ -73,6 +73,9 @@ dependencies {
 
     // QT统计独立版
     implementation files('libs/qt-common-2.0.0.aar')
+    // QT APM crash离线依赖，efs包maven依赖
+    implementation files('libs/umeng-apm-1.5.2.1.crash.002.aar')
+    implementation 'com.umeng.umsdk:apm-efs:1.6.0.001.003'
 
     //友盟Push依赖（必须）
     api 'com.umeng.umsdk:push:6.5.0'
