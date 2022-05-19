@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.quick.analytics.plugin'
 
 android {
     compileSdkVersion 30
@@ -67,8 +68,11 @@ dependencies {
     // 友盟统计SDK
     implementation 'com.umeng.umsdk:common:9.5.0' // (必选)版本号
     implementation 'com.umeng.umsdk:asms:1.6.3' // asms包依赖(必选)
-    implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
+    //implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
+
+    // QT统计独立版
+    implementation files('libs/qt-common-2.0.0.aar')
 
     //友盟Push依赖（必须）
     api 'com.umeng.umsdk:push:6.5.0'
