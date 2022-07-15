@@ -2,7 +2,6 @@ package com.umeng.soexample;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,16 +12,15 @@ import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.api.UPushRegisterCallback;
 import com.umeng.message.common.UPushNotificationChannel;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.PlatformConfig;
-import com.umeng.soexample.push.UmengNotificationService;
 
 import static android.os.Looper.getMainLooper;
 
@@ -138,7 +136,6 @@ public class UmInitConfig {
              */
             @Override
             public void dealWithCustomMessage(final Context context, final UMessage msg) {
-
                 handler.post(new Runnable() {
 
                     @Override
@@ -148,10 +145,10 @@ public class UmInitConfig {
                         boolean isClickOrDismissed = true;
                         if (isClickOrDismissed) {
                             //自定义消息的点击统计
-                            UTrack.getInstance(context).trackMsgClick(msg);
+                            UTrack.getInstance().trackMsgClick(msg);
                         } else {
                             //自定义消息的忽略统计
-                            UTrack.getInstance(context).trackMsgDismissed(msg);
+                            UTrack.getInstance().trackMsgDismissed(msg);
                         }
                         Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
                     }
@@ -167,28 +164,16 @@ public class UmInitConfig {
                     case 1:
                         Notification.Builder builder;
                         if (Build.VERSION.SDK_INT >= 26) {
-                            if (!UmengMessageHandler.isChannelSet) {
-                                UmengMessageHandler.isChannelSet = true;
-                                NotificationChannel chan = new NotificationChannel(UPushNotificationChannel.PRIMARY_CHANNEL,
-                                        PushAgent.getInstance(context).getNotificationChannelName(),
-                                        NotificationManager.IMPORTANCE_DEFAULT);
-                                NotificationManager manager = (NotificationManager) context.getSystemService(
-                                        Context.NOTIFICATION_SERVICE);
-                                if (manager != null) {
-                                    manager.createNotificationChannel(chan);
-                                }
-                            }
-                            builder = new Notification.Builder(context, UPushNotificationChannel.PRIMARY_CHANNEL);
+                            NotificationChannel channel = UPushNotificationChannel.getDefaultMode(context);
+                            builder = new Notification.Builder(context, channel.getId());
                         } else {
                             builder = new Notification.Builder(context);
                         }
-                        RemoteViews myNotificationView = new RemoteViews(context.getPackageName(),
-                                R.layout.notification_view);
+                        RemoteViews myNotificationView = new RemoteViews(context.getPackageName(), R.layout.notification_view);
                         myNotificationView.setTextViewText(R.id.notification_title, msg.title);
                         myNotificationView.setTextViewText(R.id.notification_text, msg.text);
                         myNotificationView.setImageViewBitmap(R.id.notification_large_icon, getLargeIcon(context, msg));
-                        myNotificationView.setImageViewResource(R.id.notification_small_icon,
-                                getSmallIconId(context, msg));
+                        myNotificationView.setImageViewResource(R.id.notification_small_icon, getSmallIconId(context, msg));
                         builder.setContent(myNotificationView)
                                 .setSmallIcon(getSmallIconId(context, msg))
                                 .setTicker(msg.ticker)
@@ -233,7 +218,7 @@ public class UmInitConfig {
         pushAgent.setNotificationClickHandler(notificationClickHandler);
 
         //注册推送服务 每次调用register都会回调该接口
-        pushAgent.register(new IUmengRegisterCallback() {
+        pushAgent.register(new UPushRegisterCallback() {
             @Override
             public void onSuccess(String deviceToken) {
                 Log.i(TAG, "device token: " + deviceToken);
@@ -257,7 +242,4 @@ public class UmInitConfig {
         //魅族通道
         //MeizuRegister.register(this, MEIZU_APPID, MEIZU_APPKEY);
     }
-
-
-
 }

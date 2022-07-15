@@ -12,17 +12,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 
-import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
-import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.common.UPushNotificationChannel;
 import com.umeng.message.entity.UMessage;
 import com.umeng.soexample.R;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyNotificationService extends Service {
+    private static final String TAG = UmengNotificationService.class.getName();
     public static UMessage oldMessage = null;
 
     @Override
@@ -35,8 +32,8 @@ public class MyNotificationService extends Service {
         if (intent == null) {
             return super.onStartCommand(intent, flags, startId);
         }
+        String message = intent.getStringExtra("UmengMsg");
         try {
-            String message = intent.getStringExtra("UmengMsg");
             UMessage msg = new UMessage(new JSONObject(message));
             if (oldMessage != null) {
                 UTrack.getInstance().trackMsgDismissed(oldMessage);
@@ -58,16 +55,8 @@ public class MyNotificationService extends Service {
         }
         Notification.Builder builder;
         if (Build.VERSION.SDK_INT >= 26) {
-            if (!UmengMessageHandler.isChannelSet) {
-                UmengMessageHandler.isChannelSet = true;
-                NotificationChannel chan = new NotificationChannel(UPushNotificationChannel.PRIMARY_CHANNEL,
-                        PushAgent.getInstance(this).getNotificationChannelName(),
-                        NotificationManager.IMPORTANCE_DEFAULT);
-                if (manager != null) {
-                    manager.createNotificationChannel(chan);
-                }
-            }
-            builder = new Notification.Builder(this, UPushNotificationChannel.PRIMARY_CHANNEL);
+            NotificationChannel channel = UPushNotificationChannel.getDefaultMode(this);
+            builder = new Notification.Builder(this, channel.getId());
         } else {
             builder = new Notification.Builder(this);
         }
@@ -83,8 +72,7 @@ public class MyNotificationService extends Service {
         notification.deleteIntent = dismissPendingIntent;
         notification.contentIntent = clickPendingIntent;
         manager.notify(id, notification);
-        //通知消息显示统计
-        UTrack.getInstance(this).trackMsgShow(msg, notification);
+        UTrack.getInstance().trackMsgShow(msg, notification);
     }
 
     public PendingIntent getClickPendingIntent(Context context, UMessage msg) {
@@ -94,10 +82,11 @@ public class MyNotificationService extends Service {
                 msg.getRaw().toString());
         clickIntent.putExtra(NotificationBroadcast.EXTRA_KEY_ACTION,
                 NotificationBroadcast.ACTION_CLICK);
-
-        return PendingIntent.getBroadcast(context,
+        PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context,
                 (int) (System.currentTimeMillis()),
                 clickIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        return clickPendingIntent;
     }
 
     public PendingIntent getDismissPendingIntent(Context context, UMessage msg) {
@@ -108,9 +97,10 @@ public class MyNotificationService extends Service {
         deleteIntent.putExtra(
                 NotificationBroadcast.EXTRA_KEY_ACTION,
                 NotificationBroadcast.ACTION_DISMISS);
-        return PendingIntent.getBroadcast(context,
+        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(context,
                 (int) (System.currentTimeMillis() + 1),
                 deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        return deletePendingIntent;
     }
 
     @Override
