@@ -65,7 +65,7 @@ dependencies {
     api project(':UMLibrary')
 
     // 友盟统计SDK
-    implementation 'com.umeng.umsdk:common:9.5.1' // (必选)版本号
+    implementation 'com.umeng.umsdk:common:9.5.2' // (必选)版本号
     implementation 'com.umeng.umsdk:asms:1.6.3' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:apm:1.2.0' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
@@ -76,7 +76,7 @@ dependencies {
     //分享，登录
     implementation 'com.umeng.umsdk:share-core:7.2.0'
     implementation 'com.umeng.umsdk:share-board:7.2.0'
-    implementation 'com.umeng.umsdk:share-qq:7.2.0'
+    //implementation 'com.umeng.umsdk:share-qq:7.2.0'
     implementation 'com.umeng.umsdk:share-wx:7.2.0'
     implementation 'com.umeng.umsdk:share-sina:7.2.0'
     implementation 'com.umeng.umsdk:share-alipay:7.2.0'
