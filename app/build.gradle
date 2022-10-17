@@ -74,25 +74,31 @@ dependencies {
     api 'com.umeng.umsdk:push:6.5.5'
 
     //分享，登录
-    implementation 'com.umeng.umsdk:share-core:7.2.0'
-    implementation 'com.umeng.umsdk:share-board:7.2.0'
-    //implementation 'com.umeng.umsdk:share-qq:7.2.0'
-    implementation 'com.umeng.umsdk:share-wx:7.2.0'
-    implementation 'com.umeng.umsdk:share-sina:7.2.0'
-    implementation 'com.umeng.umsdk:share-alipay:7.2.0'
-    implementation 'com.umeng.umsdk:share-dingding:7.2.0'
+    implementation 'com.umeng.umsdk:share-core:7.2.1'
+    implementation 'com.umeng.umsdk:share-board:7.2.1'
+    implementation 'com.umeng.umsdk:share-qq:7.2.1'
+    implementation 'com.umeng.umsdk:share-wx:7.2.1'
+    implementation 'com.umeng.umsdk:share-sina:7.2.1'
+    implementation 'com.umeng.umsdk:share-alipay:7.2.1'
+    implementation 'com.umeng.umsdk:share-dingding:7.2.1'
 
     //twitter官方sdk
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
 
     //新浪微博官方SDK
-    implementation 'io.github.sinaweibosdk:core:11.11.1@aar'
+    implementation 'io.github.sinaweibosdk:core:12.5.0@aar'
     //QQ官方依赖库
     implementation files('libs/open_sdk_3.5.12.2_r97423a8_lite.jar')
     //微信官方依赖库
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
     //钉钉官方sdk
     implementation  "com.alibaba.android:ddsharesdk:1.2.0@jar"
+
+    //抖音官方sdk
+    api 'com.bytedance.ies.ugc.aweme:opensdk-china-external:0.1.9.0'
+
+    api 'com.bytedance.ies.ugc.aweme:opensdk-common:0.1.9.0'
+
 
 }

@@ -1,13 +1,5 @@
 package com.umeng.soexample.share;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -19,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
+
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -26,7 +19,6 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMEmoji;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMMin;
-
 import com.umeng.socialize.media.UMQQMini;
 import com.umeng.socialize.media.UMVideo;
 import com.umeng.socialize.media.UMWeb;
@@ -37,6 +29,14 @@ import com.umeng.soexample.R;
 import com.umeng.soexample.share.utils.Defaultcontent;
 import com.umeng.soexample.share.utils.StyleUtil;
 import com.umeng.soexample.views.Item;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by wangfei on 2018/1/23.
@@ -54,6 +54,7 @@ public class ShareDetailActivity extends BaseActivity{
     // 演示企业微信 本地文件、本地视频文件分享
     private File localfile;
     private UMVideo localVideo;
+    private UMVideo localVideo1;
 
     // 工具函数
     private boolean writeFile(String filename, InputStream in) throws IOException
@@ -130,6 +131,12 @@ public class ShareDetailActivity extends BaseActivity{
                         shareMulImage();
                     }else if (style.equals(StyleUtil.QQMiniApp)) {
                         shareQQMiniApp();
+                    }else if(style.equals(StyleUtil.VIDEO15)){
+                        shareimgvideo();
+                    }else if(style.equals(StyleUtil.VIDEO12)){
+                        sharevideos();
+                    }else if(style.equals(StyleUtil.VIDEO14)||style.equals(StyleUtil.VIDEO13)){
+                        shareVideo();
                     }
                 }
             });
@@ -193,13 +200,46 @@ public class ShareDetailActivity extends BaseActivity{
             .setCallback(shareListener).share();
     }
     public void shareVideo(){
-        UMVideo video = new UMVideo(Defaultcontent.videourl);
-        video.setThumb(new UMImage(this,R.drawable.thumb));
-        video.setTitle("This is video title");
-        video.setDescription("my description");
-        new ShareAction(ShareDetailActivity.this).withMedia(video )
-            .setPlatform(share_media)
-            .setCallback(shareListener).share();
+
+        if(share_media == SHARE_MEDIA.BYTEDANCE_PUBLISH||share_media == SHARE_MEDIA.BYTEDANCE){
+            if (localVideo == null) {
+                String umengCacheDir  = this.getExternalFilesDir(null) + File.separator + "umeng_cache";
+                File dir = new File(umengCacheDir);
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                String localVidemoFileName = "localvideo.mp4";
+                AssetManager am = this.getAssets();
+                try {
+                    InputStream is = am.open(localVidemoFileName);
+
+                    boolean result = writeFile(umengCacheDir + File.separator + localVidemoFileName, is);
+                    if (result) {
+                        File video = new File(umengCacheDir + File.separator + localVidemoFileName);
+                        localVideo = new UMVideo(video);
+                    }
+
+                } catch (Throwable e) {
+
+                }
+
+            }
+
+            new ShareAction(ShareDetailActivity.this).withMedia(localVideo).withText(Defaultcontent.text)
+
+                    .setPlatform(share_media)
+                    .setCallback(shareListener).share();
+        }else {
+            UMVideo video = new UMVideo(Defaultcontent.videourl);
+            video.setThumb(new UMImage(this, R.drawable.thumb));
+            video.setTitle("This is video title");
+            video.setDescription("my description");
+            new ShareAction(ShareDetailActivity.this).withMedia(video )
+                    .setPlatform(share_media)
+                    .setCallback(shareListener).share();
+        }
+
+
     }
 
     public void shareLocalFile() {
@@ -265,6 +305,7 @@ public class ShareDetailActivity extends BaseActivity{
             } catch (Throwable e) {
 
             }
+
         }
         new ShareAction(ShareDetailActivity.this)
                 .withMedia(localVideo)
@@ -283,7 +324,7 @@ public class ShareDetailActivity extends BaseActivity{
             .setCallback(shareListener).share();
     }
     public void shareMulImage(){
-        if(share_media == SHARE_MEDIA.SINA){
+        if(share_media == SHARE_MEDIA.SINA||share_media == SHARE_MEDIA.BYTEDANCE){
             // 新浪微博多图分享仅支持共享路径 /data/data/应用包名/files/ 下图片文件
             //将图片copy到/data/data/应用包名/files/下
             prepareSinaImages();
@@ -342,7 +383,7 @@ public class ShareDetailActivity extends BaseActivity{
             .setCallback(shareListener).share();
     }
     public void shareEmoji(){
-        UMEmoji emoji = new UMEmoji(this,R.drawable.tutu);
+        UMEmoji emoji = new UMEmoji(this, R.drawable.tutu);
         emoji.setThumb(new UMImage(this, R.drawable.thumb));
         new ShareAction(ShareDetailActivity.this)
             .withMedia(emoji)
@@ -351,7 +392,7 @@ public class ShareDetailActivity extends BaseActivity{
     }
     public void shareMINApp(){
         UMMin umMin = new UMMin(Defaultcontent.url);
-        umMin.setThumb(new UMImage(this,R.drawable.thumb));
+        umMin.setThumb(new UMImage(this, R.drawable.thumb));
         umMin.setTitle(Defaultcontent.title);
         umMin.setDescription(Defaultcontent.text);
         umMin.setPath("pages/page10007/page10007");
@@ -375,6 +416,58 @@ public class ShareDetailActivity extends BaseActivity{
                 .setCallback(shareListener).share();
 
     }
+
+    public void shareimgvideo(){
+
+        new ShareAction(ShareDetailActivity.this).withMedias(localVideo).withMedias(new UMImage(ShareDetailActivity.this, R.drawable.logo),new UMImage(ShareDetailActivity.this, R.drawable.datu)).withText(Defaultcontent.text)
+
+                .setPlatform(share_media)
+                .setCallback(shareListener).share();
+    }
+
+    public void sharevideos(){
+        if (localVideo == null) {
+            String umengCacheDir  = this.getExternalFilesDir(null) + File.separator + "umeng_cache";
+            File dir = new File(umengCacheDir);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            String localVidemoFileName = "localvideo.mp4";
+            AssetManager am = this.getAssets();
+            try {
+                InputStream is = am.open(localVidemoFileName);
+
+                boolean result = writeFile(umengCacheDir + File.separator + localVidemoFileName, is);
+                if (result) {
+                    File video = new File(umengCacheDir + File.separator + localVidemoFileName);
+                    localVideo = new UMVideo(video);
+                }
+
+            } catch (Throwable e) {
+
+            }
+
+            String localVidemoFileName1 = "tmall.mp4";
+            AssetManager am1 = this.getAssets();
+            try {
+                InputStream is1 = am1.open(localVidemoFileName1);
+
+                boolean result1 = writeFile(umengCacheDir + File.separator + localVidemoFileName1, is1);
+                if (result1) {
+                    File video1 = new File(umengCacheDir + File.separator + localVidemoFileName1);
+                    localVideo1 = new UMVideo(video1);
+                }
+
+            } catch (Throwable e) {
+
+            }
+        }
+
+        new ShareAction(ShareDetailActivity.this).withMedias(localVideo,localVideo1) .withText(Defaultcontent.text)
+                .setPlatform(share_media)
+                .setCallback(shareListener).share();
+    }
+
 
     @Override
     public int getLayout() {
@@ -442,6 +535,8 @@ public class ShareDetailActivity extends BaseActivity{
             thread.start();
         }
     }
+
+
     private void prepareSinaImages() {
         copyFile("logo.png");
         copyFile("datu.jpg");

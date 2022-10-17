@@ -2,6 +2,9 @@
 
 buildscript {
     repositories {
+        //抖音官方sdkmaven
+        maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
+
 
         maven { url 'https://repo1.maven.org/maven2/' }
         jcenter()
@@ -18,6 +21,9 @@ buildscript {
 
 allprojects {
     repositories {
+
+        maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
+
 
         maven { url 'https://repo1.maven.org/maven2/' }
         jcenter()

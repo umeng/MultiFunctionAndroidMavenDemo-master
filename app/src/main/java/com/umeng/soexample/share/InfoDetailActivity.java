@@ -1,18 +1,19 @@
 package com.umeng.soexample.share;
 
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.soexample.BaseActivity;
 import com.umeng.soexample.R;
+
+import java.util.Map;
 
 /**
  * Created by wangfei on 2018/1/23.

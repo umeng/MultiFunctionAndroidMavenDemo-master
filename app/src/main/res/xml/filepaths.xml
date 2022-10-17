@@ -6,4 +6,10 @@
 
     <!-- 新浪微博 官方分享SDK 10.10.0共享路径 -->
     <external-files-path name="share_files" path="." />
+
+
+    <!-- 抖音适配android11本地图片分享配置路径 -->
+    <external-files-path name="imagedata" path="imageData/"/>
+    <external-files-path name="videodata" path="videoData/"/>
+    <external-files-path name="newmedia" path="newMedia/"/>
 </paths>

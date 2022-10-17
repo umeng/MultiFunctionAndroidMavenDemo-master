@@ -1,17 +1,18 @@
 package com.umeng.soexample.share;
 
-import java.util.ArrayList;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
+
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.soexample.BaseActivity;
 import com.umeng.soexample.R;
 import com.umeng.soexample.share.views.AuthAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by wangfei on 2018/1/23.
@@ -23,7 +24,7 @@ public class AuthActivity extends BaseActivity {
     public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
     private SHARE_MEDIA[] list = {SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WXWORK,
         SHARE_MEDIA.FACEBOOK, SHARE_MEDIA.TWITTER, SHARE_MEDIA.LINKEDIN, SHARE_MEDIA.DOUBAN, SHARE_MEDIA.RENREN, SHARE_MEDIA.KAKAO,
-        SHARE_MEDIA.VKONTAKTE, SHARE_MEDIA.DROPBOX};
+        SHARE_MEDIA.VKONTAKTE, SHARE_MEDIA.DROPBOX,SHARE_MEDIA.BYTEDANCE};
     private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

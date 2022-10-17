@@ -1,8 +1,5 @@
 package com.umeng.soexample.share.views;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -20,6 +18,9 @@ import com.umeng.socialize.common.ResContainer;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.SocializeUtils;
 import com.umeng.soexample.R;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by wangfei on 16/11/9.

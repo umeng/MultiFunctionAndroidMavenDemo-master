@@ -1,8 +1,8 @@
 package com.umeng.soexample.share.utils;
 
-import java.util.ArrayList;
-
 import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.ArrayList;
 
 /**
  * Created by wangfei on 2018/1/23.
@@ -11,6 +11,8 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 public class StyleUtil {
 
     public static String TEXT = "纯文本";
+
+
     public static String IMAGELOCAL = "纯图片本地";
     public static String IMAGEURL = "纯图片http";
     public static String TEXTANDIMAGE = "图文";
@@ -32,6 +34,11 @@ public class StyleUtil {
     public static String  LOCALVIDEO = "本地视频";
     public static String  LOCALFILE = "本地文件";
     public static String  MINAPP= "小程序（测试）";
+    public static String  VIDEO13= "单视频";
+    public static String  VIDEO14= "单视频（带话题）";
+
+    public static String  VIDEO12= "多视频";
+    public static String  VIDEO15= "图片视频混合";
     public static String  QQMiniApp = "QQ小程序";
     public static void initStyles(SHARE_MEDIA share_media, ArrayList<String> styles){
         styles.clear();
@@ -59,7 +66,36 @@ public class StyleUtil {
             styles.add(StyleUtil.WEB11);
             //            styles.add(StyleUtil.MUSIC11);
             //            styles.add(StyleUtil.VIDEO11);
-        }else if (share_media == SHARE_MEDIA.WEIXIN){
+        }else if(share_media == SHARE_MEDIA.BYTEDANCE){
+            styles.add(StyleUtil.IMAGELOCAL);
+            styles.add(StyleUtil.MULIMAGE);
+            styles.add(StyleUtil.IMAGEURL);
+            // styles.add(StyleUtil.WEB11);
+            // styles.add(StyleUtil.MUSIC11);
+            //styles.add(StyleUtil.VIDEO11);
+            styles.add(StyleUtil.VIDEO13);
+            styles.add(StyleUtil.VIDEO12);
+            styles.add(StyleUtil.VIDEO15);
+            //styles.add(StyleUtil.MINAPP);
+        }else if(share_media == SHARE_MEDIA.BYTEDANCE_PUBLISH){
+//            styles.add(StyleUtil.IMAGELOCAL);
+//            styles.add(StyleUtil.MULIMAGELOCAL);
+//            styles.add(StyleUtil.IMAGEURL);
+            // styles.add(StyleUtil.WEB11);
+            // styles.add(StyleUtil.MUSIC11);
+            styles.add(StyleUtil.VIDEO14);
+            //styles.add(StyleUtil.MINAPP);
+        }else if(share_media == SHARE_MEDIA.BYTEDANCE_FRIENDS){
+            styles.add(StyleUtil.IMAGELOCAL);
+//            styles.add(StyleUtil.MULIMAGELOCAL);
+            styles.add(StyleUtil.IMAGEURL);
+            styles.add(StyleUtil.WEB11);
+            // styles.add(StyleUtil.MUSIC11);
+            //   styles.add(StyleUtil.VIDEO14);
+            //styles.add(StyleUtil.MINAPP);
+        }
+
+        else if (share_media == SHARE_MEDIA.WEIXIN){
             styles.add(StyleUtil.TEXT);
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);

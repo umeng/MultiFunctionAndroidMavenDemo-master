@@ -1,7 +1,5 @@
 package com.umeng.soexample.share;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +7,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.common.ResContainer;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.soexample.BaseActivity;
 import com.umeng.soexample.R;
 import com.umeng.soexample.views.Item;
+
+import java.util.ArrayList;
 
 /**
  * Created by wangfei on 2018/1/23.
@@ -67,6 +68,10 @@ public class SharePlatformActivity extends BaseActivity {
         platforms.add(SHARE_MEDIA.SINA.toSnsPlatform());
         platforms.add(SHARE_MEDIA.QQ.toSnsPlatform());
         platforms.add(SHARE_MEDIA.QZONE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE_FRIENDS.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE_PUBLISH.toSnsPlatform());
+
         platforms.add(SHARE_MEDIA.ALIPAY.toSnsPlatform());
         platforms.add(SHARE_MEDIA.DINGTALK.toSnsPlatform());
         platforms.add(SHARE_MEDIA.RENREN.toSnsPlatform());
@@ -96,6 +101,7 @@ public class SharePlatformActivity extends BaseActivity {
         platforms.add(SHARE_MEDIA.FLICKR.toSnsPlatform());
         platforms.add(SHARE_MEDIA.FOURSQUARE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.DROPBOX.toSnsPlatform());
+
         platforms.add(SHARE_MEDIA.MORE.toSnsPlatform());
 
     }

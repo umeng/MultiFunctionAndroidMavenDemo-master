@@ -1,13 +1,12 @@
 package com.umeng.soexample.share;
 
-import java.lang.ref.WeakReference;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -20,6 +19,8 @@ import com.umeng.socialize.utils.ShareBoardlistener;
 import com.umeng.soexample.BaseActivity;
 import com.umeng.soexample.R;
 import com.umeng.soexample.share.utils.Defaultcontent;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by wangfei on 2018/1/23.

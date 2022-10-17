@@ -1,5 +1,7 @@
 package com.umeng.soexample;
 
+import static android.os.Looper.getMainLooper;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.content.Context;
@@ -22,8 +24,6 @@ import com.umeng.message.common.UPushNotificationChannel;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.PlatformConfig;
 
-import static android.os.Looper.getMainLooper;
-
 
 public class UmInitConfig {
 
@@ -38,6 +38,10 @@ public class UmInitConfig {
                 "669c30a9584623e70e8cd01b0381dcb4");
 
         String FileProvider = "com.umeng.soexample.fileprovider";
+
+        PlatformConfig.setBytedance("awd1cemo6d0l69zp","awd1cemo6d0l69zp","a2dce41fff214270dd4a7f60ac885491",FileProvider);
+
+
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
         PlatformConfig.setWXFileProvider(FileProvider);
         //企业微信设置

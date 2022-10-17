@@ -1,7 +1,5 @@
 package com.umeng.soexample.share;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
+
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -21,6 +20,8 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 import com.umeng.soexample.R;
 import com.umeng.soexample.share.utils.StyleUtil;
+
+import java.io.File;
 
 /**
  * Created by wangfei on 2018/1/24.
@@ -188,18 +189,18 @@ public class SettingActivity extends Activity{
     }
     private UMImage getImageThumb(String s){
         if (TextUtils.isEmpty(s)){
-            return new UMImage(this,R.mipmap.ic_launcher);
+            return new UMImage(this, R.mipmap.ic_launcher);
         }else if (s.startsWith("/")){
             File file = new File(s);
             if (file.exists()){
                 return new UMImage(this,file);
             }else {
-                return new UMImage(this,R.mipmap.ic_launcher);
+                return new UMImage(this, R.mipmap.ic_launcher);
             }
         }else if (s.startsWith("http")){
             return new UMImage(this,s);
         }else {
-            return new UMImage(this,R.mipmap.ic_launcher);
+            return new UMImage(this, R.mipmap.ic_launcher);
         }
     }
     @Override
