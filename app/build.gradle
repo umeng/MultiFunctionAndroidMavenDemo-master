@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
 
     //友盟Push依赖（必须）
-    api 'com.umeng.umsdk:push:6.5.7'
+    api 'com.umeng.umsdk:push:6.5.8'
 
     //分享，登录
     implementation 'com.umeng.umsdk:share-core:7.3.0'
