@@ -24,8 +24,9 @@ import java.util.ArrayList;
 public class InfoActivity extends BaseActivity {
     private LinearLayout container;
     public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
-    private SHARE_MEDIA[] list = {SHARE_MEDIA.QQ,SHARE_MEDIA.SINA,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WXWORK,
-        SHARE_MEDIA.FACEBOOK,SHARE_MEDIA.LINKEDIN,SHARE_MEDIA.KAKAO,SHARE_MEDIA.VKONTAKTE,SHARE_MEDIA.DROPBOX,SHARE_MEDIA.BYTEDANCE};
+    private SHARE_MEDIA[] list = {SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WXWORK,
+            SHARE_MEDIA.FACEBOOK, SHARE_MEDIA.LINKEDIN, SHARE_MEDIA.KAKAO, SHARE_MEDIA.VKONTAKTE, SHARE_MEDIA.DROPBOX, SHARE_MEDIA.BYTEDANCE, SHARE_MEDIA.HONOR};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,31 +34,34 @@ public class InfoActivity extends BaseActivity {
         setBackVisibily();
         initViews();
     }
-    private void initViews(){
-        LinearLayout container = (LinearLayout)findViewById(R.id.platform_container);
+
+    private void initViews() {
+        LinearLayout container = (LinearLayout) findViewById(R.id.platform_container);
         initPlatforms();
-        for (final SnsPlatform platform:platforms){
+        for (final SnsPlatform platform : platforms) {
             Item item = new Item(this);
-            item.setIcon(ResContainer.getResourceId(this,"drawable",platform.mIcon));
+            item.setIcon(ResContainer.getResourceId(this, "drawable", platform.mIcon));
             item.setName(platform.mShowWord);
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,getResources().getDimensionPixelOffset(R.dimen.item_height));
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelOffset(R.dimen.item_height));
             item.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(InfoActivity.this,InfoDetailActivity.class);
-                    intent.putExtra("platform",platform.mPlatform);
+                    Intent intent = new Intent(InfoActivity.this, InfoDetailActivity.class);
+                    intent.putExtra("platform", platform.mPlatform);
                     InfoActivity.this.startActivity(intent);
                 }
             });
-            container.addView(item,lp);
+            container.addView(item, lp);
         }
 
 
     }
+
     @Override
     public int getLayout() {
         return R.layout.activity_ushareplatform;
     }
+
     private void initPlatforms() {
         platforms.clear();
         for (SHARE_MEDIA e : list) {
