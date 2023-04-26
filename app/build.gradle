@@ -72,42 +72,42 @@ dependencies {
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
 
     //友盟Push依赖（必须）
-    api 'com.umeng.umsdk:push:6.5.8'
+    implementation 'com.umeng.umsdk:push:6.5.8'
 
     //友盟分享核心组件
-    implementation 'com.umeng.umsdk:share-core:7.3.1'
+    implementation 'com.umeng.umsdk:share-core:7.3.2'
 
     //QQ
     implementation files('libs/open_sdk_3.5.14.3_rc26220c_lite.jar')
-    implementation 'com.umeng.umsdk:share-qq:7.3.1'
+    implementation 'com.umeng.umsdk:share-qq:7.3.2'
 
     //微信
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
-    implementation 'com.umeng.umsdk:share-wx:7.3.1'
+    implementation 'com.umeng.umsdk:share-wx:7.3.2'
 
     //新浪微博
     implementation 'io.github.sinaweibosdk:core:12.5.0@aar'
-    implementation 'com.umeng.umsdk:share-sina:7.3.1'
+    implementation 'com.umeng.umsdk:share-sina:7.3.2'
 
     //钉钉
     implementation 'com.alibaba.android:ddsharesdk:1.2.0@jar'
-    implementation 'com.umeng.umsdk:share-dingding:7.3.1'
+    implementation 'com.umeng.umsdk:share-dingding:7.3.2'
 
     //抖音
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-china-external:0.1.9.0'
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-common:0.1.9.0'
-//    implementation files('libs/umeng-share-bytedance-7.3.1.jar')
+//    implementation files('libs/umeng-share-bytedance-7.3.2.jar')
 
     //荣耀账号授权
 //    implementation files('libs/Honor-openSDK-6.0.3.004.aar')
-//    implementation files('libs/umeng-share-honor-7.3.1.jar')
+//    implementation files('libs/umeng-share-honor-7.3.2.jar')
 
     //支付宝
-    implementation 'com.umeng.umsdk:share-alipay:7.3.1'
+    implementation 'com.umeng.umsdk:share-alipay:7.3.2'
 
     //twitter官方sdk
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
-//    implementation files('libs/umeng-share-twitter-7.3.1.jar')
+//    implementation files('libs/umeng-share-twitter-7.3.2.jar')
 
 }
