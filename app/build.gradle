@@ -65,7 +65,7 @@ dependencies {
     api project(':UMLibrary')
 
     // 友盟统计SDK
-    implementation 'com.umeng.umsdk:common:9.6.3' // (必选)版本号
+    implementation 'com.umeng.umsdk:common:9.6.4' // (必选)版本号
     implementation 'com.umeng.umsdk:asms:1.8.0' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:uyumao:1.1.2' //高级运营分析功能依赖库
 
