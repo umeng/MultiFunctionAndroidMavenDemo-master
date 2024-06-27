@@ -70,53 +70,46 @@ dependencies {
     implementation 'com.umeng.umsdk:uyumao:+' //高级运营分析功能依赖库
 
     implementation 'com.umeng.umsdk:apm:1.9.5' // apm包依赖(可选)
-    implementation 'com.umeng.umsdk:link:1.2.0'
+    implementation 'com.umeng.umsdk:link:+'
     implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
 
     //友盟Push依赖（必须）
     implementation 'com.umeng.umsdk:push:+'
 
     //友盟分享核心组件
-    implementation 'com.umeng.umsdk:share-core:7.3.3'
+    implementation 'com.umeng.umsdk:share-core:+'
 
     //U-Share 依赖
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:25.0.0'
 
     //QQ
-    implementation files('libs/open_sdk_3.5.14.4_r377deaa_lite.jar')
-    implementation 'com.umeng.umsdk:share-qq:7.3.3'
+    implementation files('libs/open_sdk_3.5.16.4_r8c01346_lite.jar')
+    implementation 'com.umeng.umsdk:share-qq:+'
 
     //微信
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.24'
-    implementation 'com.umeng.umsdk:share-wx:7.3.3'
+    implementation 'com.umeng.umsdk:share-wx:+'
 
     //新浪微博
-//    implementation 'io.github.sinaweibosdk:core:13.10.0'
-    implementation('io.github.sinaweibosdk:core:13.10.0') {
+    implementation('io.github.sinaweibosdk:core:13.10.1') {
         exclude module: 'unspecified'
     }
-    implementation 'com.umeng.umsdk:share-sina:7.3.3'
+    implementation 'com.umeng.umsdk:share-sina:+'
 
     //钉钉
     implementation 'com.alibaba.android:ddsharesdk:1.2.2'
-    implementation 'com.umeng.umsdk:share-dingding:7.3.3'
+    implementation 'com.umeng.umsdk:share-dingding:+'
 
     //抖音
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-china-external:0.1.9.0'
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-common:0.1.9.0'
-//    implementation files('libs/umeng-share-bytedance-7.3.3.jar')
-
-    //荣耀账号授权
-//    implementation files('libs/Honor-openSDK-6.0.3.004.aar')
-//    implementation files('libs/umeng-share-honor-7.3.3.jar')
 
     //支付宝
-    implementation 'com.umeng.umsdk:share-alipay:7.3.3'
+    implementation 'com.umeng.umsdk:share-alipay:+'
 
     //twitter官方sdk
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
-//    implementation files('libs/umeng-share-twitter-7.3.3.jar')
 
 }
