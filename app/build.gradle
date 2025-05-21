@@ -71,7 +71,7 @@ dependencies {
 
     implementation 'com.umeng.umsdk:apm:1.9.5' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:link:+'
-    implementation 'com.umeng.umsdk:game:9.2.0+G' // 游戏统计SDK依赖(可选)
+    implementation 'com.umeng.umsdk:game:+' // 游戏统计SDK依赖(可选)
 
     //友盟Push依赖（必须）
     implementation 'com.umeng.umsdk:push:+'
