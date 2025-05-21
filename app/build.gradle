@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId "com.umeng.soexample"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.umeng.umsdk:asms:+' // asms包依赖(必选)
     implementation 'com.umeng.umsdk:uyumao:+' //高级运营分析功能依赖库
 
-    implementation 'com.umeng.umsdk:apm:1.9.5' // apm包依赖(可选)
+    implementation 'com.umeng.umsdk:apm:+' // apm包依赖(可选)
     implementation 'com.umeng.umsdk:link:+'
     implementation 'com.umeng.umsdk:game:+' // 游戏统计SDK依赖(可选)
 
