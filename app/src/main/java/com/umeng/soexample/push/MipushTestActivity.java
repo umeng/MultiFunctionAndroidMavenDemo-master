@@ -11,14 +11,14 @@ public class MipushTestActivity extends UmengNotifyClickActivity {
     private TextView mipushTextView;
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_mipush);
         mipushTextView = (TextView) findViewById(R.id.mipushTextView);
     }
 
     @Override
-    protected void onMessage(final UMessage uMessage) {
+    public void onMessage(final UMessage uMessage) {
         super.onMessage(uMessage);
         runOnUiThread(new Runnable() {
             @Override
