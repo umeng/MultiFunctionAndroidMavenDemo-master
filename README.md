@@ -1,3 +1,17 @@
+# Umeng+ Android SDK Maven Integration Demo
+
+友盟+ Android SDK Maven在线依赖官方示例，覆盖U-App、U-Push和U-Share。
+
+## Related resources｜相关资源
+
+- [离线包及综合集成示例](https://github.com/umeng/MultiFunctionAndroidDemo)
+- [SDK开发者中心](https://devs.umeng.com/)
+- [提交接入问题](https://github.com/umeng/MultiFunctionAndroidMavenDemo-master/issues)
+
+> 本次仅优化文档，不修改Maven、Gradle或SDK配置。
+
+---
+
 ### 【友盟+】统计、推送、分享三合一组件化SDK集成Demo
      统计，分享sdk在线maven依赖展示demo
 
