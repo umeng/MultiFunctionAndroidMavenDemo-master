@@ -11,6 +11,14 @@
 > 本次仅优化文档，不修改Maven、Gradle或SDK配置。
 
 ---
+## 友盟开发者知识库
+
+遇到 SDK 接入、消息推送、崩溃分析、小程序统计或 AI 工具问题，可访问：
+
+- [友盟开发者知识库](https://github.com/umeng/umeng-developer-guide)
+- [友盟官方开发者文档](https://developer.umeng.com/docs)
+
+----
 
 ### 【友盟+】统计、推送、分享三合一组件化SDK集成Demo
      统计，分享sdk在线maven依赖展示demo
